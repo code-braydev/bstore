@@ -7,7 +7,7 @@ export interface Product {
   price: number;
   category: string;
   brand: string;
-  image: string;
+  img: string;
   rating: number;
   ratingCount: number;
   stock: number;
@@ -17,28 +17,8 @@ export interface CartItem {
   id: number;
   name: string;
   price: number;
-  image: string;
+  img: string;
   quantity: number;
-}
-
-export interface UserProfile {
-  name: string;
-  email: string;
-}
-
-export interface UserAccount extends UserProfile {
-  password: string;
-}
-
-export interface LoginPayload {
-  email: string;
-  password: string;
-}
-
-export interface RegisterPayload {
-  name: string;
-  email: string;
-  password: string;
 }
 
 export interface PaymentPayload {
@@ -56,14 +36,10 @@ export interface ShopState {
     sort: SortOption;
   };
   cart: CartItem[];
-  user: UserProfile | null;
-  users: UserAccount[];
   dialogs: {
     cart: boolean;
-    login: boolean;
   };
   checkoutState: CheckoutState;
-  authError: string;
   checkoutError: string;
   ui: {
     cartPulseKey: number;

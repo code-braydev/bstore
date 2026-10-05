@@ -19,7 +19,7 @@
 							<v-list-item v-for="item in store.cart" :key="item.id" class="px-0">
 								<template #prepend>
 									<v-avatar rounded="0" size="64" class="mr-3">
-										<v-img :src="item.image" cover />
+										<v-img :src="item.img" cover />
 									</v-avatar>
 								</template>
 
@@ -60,17 +60,7 @@
 								<strong>{{ store.formatPrice(store.cartTotal) }}</strong>
 							</div>
 
-							<v-alert v-if="!store.isAuthenticated" type="info" variant="tonal" density="compact"
-								class="mb-4">
-								Inicia sesión para continuar con el pago.
-							</v-alert>
-
-							<v-btn v-if="!store.isAuthenticated" block color="primary" class="text-none"
-								@click="openLoginFromCart">
-								Iniciar sesión
-							</v-btn>
-
-							<div v-else class="d-flex flex-column ga-3">
+							<div class="d-flex flex-column ga-3">
 								<v-text-field v-model="payment.card" label="Tarjeta" variant="outlined"
 									density="compact" maxlength="19" hide-details />
 								<v-text-field v-model="payment.name" label="Nombre en tarjeta" variant="outlined"
@@ -126,11 +116,6 @@ const payment = reactive<PaymentPayload>({
 	exp: '',
 	cvv: '',
 })
-
-const openLoginFromCart = () => {
-	store.closeCart()
-	store.openLogin()
-}
 
 const pay = async () => {
 	const ok = await store.simulatePayment({

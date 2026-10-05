@@ -1,7 +1,15 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  // ESTO ES LO QUE FALTA:
+  app: {
+    head: {
+      title: "LaptopMania | Tienda de Computadores",
+      meta: [
+        { name: "description", content: "LaptopMania - Computadores y portátiles de alto rendimiento" },
+      ],
+    },
+  },
+
   css: [
     "vuetify/lib/styles/main.css",
     "@mdi/font/css/materialdesignicons.min.css",

@@ -4,7 +4,7 @@
       <div class="d-flex align-center ga-2 flex-wrap">
         <v-chip v-for="item in store.categories" :key="item"
           :color="store.filters.category === item ? 'primary' : undefined"
-          :variant="store.filters.category === item ? 'flat' : 'outlined'" class="text-none"
+          :variant="store.filters.category === item ? 'flat' : 'outlined'" class="text-none font-weight-medium"
           @click="store.setCategory(item)">
           {{ item }}
         </v-chip>
@@ -12,7 +12,7 @@
 
       <v-spacer />
 
-      <v-select label="Ordenar" :model-value="store.filters.sort" @update:model-value="onSortChange" :items="sortItems"
+      <v-select label="Ordenar por" :model-value="store.filters.sort" @update:model-value="onSortChange" :items="sortItems"
         item-title="label" item-value="value" density="compact" variant="outlined" hide-details class="sort-select" />
     </v-container>
   </v-sheet>
@@ -40,6 +40,10 @@ const onSortChange = (value: SortOption | null) => {
 <style scoped>
 .filter-shell {
   border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 74px;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .sort-select {

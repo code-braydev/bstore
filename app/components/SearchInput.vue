@@ -11,7 +11,7 @@ const props = withDefaults(
         placeholder?: string
     }>(),
     {
-        placeholder: 'Busca laptops, audio, accesorios...',
+        placeholder: 'Busca tu laptop ideal...',
     },
 )
 

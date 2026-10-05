@@ -1,16 +1,14 @@
 <template>
   <v-app style="background-color: #f5f5f5">
     <Header />
-    <Navbar />
 
     <v-main>
+      <Navbar />
       <slot />
     </v-main>
 
     <ShoppingCart />
-    <User />
     <Footer />
-
   </v-app>
 </template>
 

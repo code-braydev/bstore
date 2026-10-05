@@ -1,8 +1,13 @@
 <template>
 	<v-app-bar flat color="white" height="74" class="header-shell">
 		<v-container class="d-flex align-center ga-4 px-2 px-md-4">
-			<button class="brand" @click="navigateTo('/')" type="button">
-				<span class="text-grey-darken-1">BZ</span><span class="text-black">tore</span>
+			<button class="brand" @click="navigateTo('/')" type="button" aria-label="LaptopMania Inicio">
+				<div class="brand-icon-wrapper">
+					<v-icon icon="mdi-laptop" color="white" size="22" />
+				</div>
+				<div class="brand-text">
+					<span class="brand-main">Laptop</span><span class="brand-highlight">Mania</span>
+				</div>
 			</button>
 
 			<div class="search-input">
@@ -10,31 +15,13 @@
 			</div>
 
 			<div class="actions d-flex align-center ga-1 ga-md-2">
-				<v-btn icon="mdi-heart-outline" variant="text" size="small" />
-
 				<v-btn icon variant="tonal" color="primary" size="small" @click="store.openCart()"
-					:class="{ pulse: cartPulse }">
+					:class="{ pulse: cartPulse }" aria-label="Ver carrito">
 					<v-badge v-if="store.cartCount > 0" :content="store.cartCount" color="error" offset-x="1"
 						offset-y="1">
 						<v-icon icon="mdi-cart-outline" />
 					</v-badge>
 					<v-icon v-else icon="mdi-cart-outline" />
-				</v-btn>
-
-				<v-menu v-if="store.isAuthenticated" location="bottom end">
-					<template #activator="{ props }">
-						<v-btn v-bind="props" icon="mdi-account-circle-outline" variant="text" size="small" />
-					</template>
-					<v-list density="compact" min-width="220">
-						<v-list-item :title="store.user?.name || ''" :subtitle="store.user?.email || ''" />
-						<v-divider />
-						<v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" @click="store.logout()" />
-					</v-list>
-				</v-menu>
-
-				<v-btn v-else variant="text" prepend-icon="mdi-account-outline"
-					class="text-none d-none d-md-inline-flex" @click="store.openLogin()">
-					Iniciar sesión
 				</v-btn>
 			</div>
 		</v-container>
@@ -63,15 +50,55 @@ watch(
 <style scoped>
 .header-shell {
 	border-bottom: 1px solid #e8e8e8;
+	z-index: 100 !important;
 }
 
 .brand {
 	border: 0;
 	background: transparent;
-	font-size: 1.35rem;
-	font-weight: 900;
-	letter-spacing: -0.4px;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
 	cursor: pointer;
+	text-decoration: none;
+	padding: 4px 6px;
+	border-radius: 8px;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.brand:hover {
+	transform: translateY(-1px);
+	opacity: 0.92;
+}
+
+.brand-icon-wrapper {
+	width: 38px;
+	height: 38px;
+	border-radius: 10px;
+	background: linear-gradient(135deg, #1976d2 0%, #7b1fa2 100%);
+	display: grid;
+	place-items: center;
+	box-shadow: 0 4px 12px rgba(25, 118, 210, 0.35);
+}
+
+.brand-text {
+	display: flex;
+	align-items: baseline;
+	font-size: 1.45rem;
+	letter-spacing: -0.6px;
+	line-height: 1;
+}
+
+.brand-main {
+	color: #0f172a;
+	font-weight: 900;
+}
+
+.brand-highlight {
+	background: linear-gradient(135deg, #1976d2 0%, #9c27b0 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 900;
 }
 
 .search-input {
@@ -100,6 +127,10 @@ watch(
 @media (max-width: 959px) {
 	.search-input {
 		max-width: 360px;
+	}
+
+	.brand-text {
+		font-size: 1.25rem;
 	}
 }
 </style>
