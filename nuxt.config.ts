@@ -5,7 +5,11 @@ export default defineNuxtConfig({
     head: {
       title: "LaptopMania | Tienda de Computadores",
       meta: [
-        { name: "description", content: "LaptopMania - Computadores y portátiles de alto rendimiento" },
+        {
+          name: "description",
+          content:
+            "LaptopMania - Computadores y portátiles de alto rendimiento",
+        },
       ],
     },
   },
@@ -27,6 +31,15 @@ export default defineNuxtConfig({
       },
     },
   },
-
+  nitro: {
+    storage: {
+      db: {
+        driver: "sqlite",
+        driverOptions: {
+          filename: "./data/local.db",
+        },
+      },
+    },
+  },
   modules: ["@pinia/nuxt"],
 });
